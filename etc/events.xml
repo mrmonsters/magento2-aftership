@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_shipment_track_save_after">
+        <observer name="shipment_track_save_after" instance="Mrmonsters\Aftership\Observer\ShipmentTrackSaveAfterObserver"/>
+    </event>
+    <event name="admin_system_config_changed_section_aftership_options">
+        <observer name="aftership_options_config_changed" instance="Mrmonsters\Aftership\Observer\AftershipOptionsConfigChangedObserver"/>
+    </event>
+    <event name="aftership_track_cron_after">
+        <observer name="aftership_track_cron_after" instance="Mrmonsters\Aftership\Observer\AftershipTrackCronAfterObserver"/>
+    </event>
+</config>

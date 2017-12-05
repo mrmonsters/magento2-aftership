@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="aftershipconfig"
+             translate="label"
+             sortOrder="99999">
+            <label>Aftership</label>
+        </tab>
+        <section id="aftership_options"
+                 translate="label"
+                 type="text"
+                 sortOrder="10"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Aftership Config Options</label>
+            <tab>aftershipconfig</tab>
+            <resource>Mrmonsters_Aftership::mrmonsters_aftership</resource>
+            <group id="messages"
+                   translate="label,comment"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Account Setting</label>
+                <field id="api_key"
+                       translate="label,comment"
+                       type="text"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="0">
+                    <label>Aftership API Key</label>
+                    <comment>You can find your API key in <![CDATA[<a target='_blank' href="https://www.aftership.com/apps/magento-v1">https://www.aftership.com/apps/magento-v1</a>]]></comment>
+                </field>
+                <field id="status"
+                       translate="label"
+                       type="select"
+                       sortOrder="20"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_job_enable"
+                       translate="label"
+                       type="select"
+                       sortOrder="30"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="0">
+                    <label>Enable Cron Job</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_job_frequency"
+                       translate="label"
+                       type="select"
+                       sortOrder="40"
+                       showInDefault="0"
+                       showInWebsite="0"
+                       showInStore="0">
+                    <label>Cron Job Frequency</label>
+                    <source_model>Mrmonsters\Aftership\Model\Config\Source\FrequencyOptions</source_model>
+                </field>
+                <field id="last_update"
+                       translate="label"
+                       type="text"
+                       sortOrder="50"
+                       showInDefault="0"
+                       showInWebsite="0"
+                       showInStore="0">
+                    <label>Last Update</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
