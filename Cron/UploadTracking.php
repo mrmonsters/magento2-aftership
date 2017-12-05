@@ -86,7 +86,7 @@ class UploadTracking {
 		                                                 ])
 		                                                 ->addAttributeToSort('created_at', 'asc');
 
-		/* @var \Magento\Shipping\Model\Order\Track $magentoTrack */
+		/* @var Order\Shipment\Track $magentoTrack */
 		foreach ($trackCollection as $magentoTrack) {
 
 			/* @var Order $order */
