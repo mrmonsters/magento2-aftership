@@ -14,7 +14,6 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\OrderFactory;
-use Magento\Shipping\Model\Order\Track;
 use Mrmonsters\Aftership\Model\TrackFactory;
 
 class Data extends AbstractHelper {
@@ -77,7 +76,7 @@ class Data extends AbstractHelper {
 		return $httpStatus;
 	}
 
-	public function saveTrack(Track $magentoTrack)
+	public function saveTrack(Order\Shipment\Track $magentoTrack)
 	{
 		/* @var Order $order */
 		$order = $magentoTrack->getShipment()->getOrder();
