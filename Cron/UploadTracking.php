@@ -6,7 +6,7 @@
  * Time: 6:51 PM
  */
 
-namespace Mrmonsters\Aftership\Model;
+namespace Mrmonsters\Aftership\Cron;
 
 use Magento\Framework\App\Config\ConfigResource\ConfigInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -18,7 +18,7 @@ use Mrmonsters\Aftership\Helper\Config;
 use Mrmonsters\Aftership\Helper\Data;
 use Mrmonsters\Aftership\Model\ResourceModel\Track\CollectionFactory as AsTrackCollectionFactory;
 
-class Cron {
+class UploadTracking {
 
 	protected $_scopeConfig;
 	protected $_trackCollectionFactory;
