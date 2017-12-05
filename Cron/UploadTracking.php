@@ -13,7 +13,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\OrderFactory;
-use Magento\Sales\Model\ResourceModel\Order\Shipment\CollectionFactory;
+use Magento\Sales\Model\ResourceModel\Order\Shipment\Track\CollectionFactory;
 use Mrmonsters\Aftership\Helper\Config;
 use Mrmonsters\Aftership\Helper\Data;
 use Mrmonsters\Aftership\Model\ResourceModel\Track\CollectionFactory as AsTrackCollectionFactory;
@@ -32,13 +32,13 @@ class UploadTracking {
 	/**
 	 * Cron constructor.
 	 *
-	 * @param \Magento\Framework\App\Config\ScopeConfigInterface                  $scopeConfig
-	 * @param \Magento\Sales\Model\ResourceModel\Order\Shipment\CollectionFactory $collectionFactory
-	 * @param \Magento\Sales\Model\OrderFactory                                   $orderFactory
-	 * @param \Mrmonsters\Aftership\Helper\Data                                   $aftershipHelper
-	 * @param \Mrmonsters\Aftership\Helper\Config                                 $configHelper
-	 * @param \Mrmonsters\Aftership\Model\ResourceModel\Track\CollectionFactory   $asTrackCollectionFactory
-	 * @param \Magento\Framework\App\Config\ConfigResource\ConfigInterface        $configInterface
+	 * @param \Magento\Framework\App\Config\ScopeConfigInterface                        $scopeConfig
+	 * @param \Magento\Sales\Model\ResourceModel\Order\Shipment\Track\CollectionFactory $collectionFactory
+	 * @param \Magento\Sales\Model\OrderFactory                                         $orderFactory
+	 * @param \Mrmonsters\Aftership\Helper\Data                                         $aftershipHelper
+	 * @param \Mrmonsters\Aftership\Helper\Config                                       $configHelper
+	 * @param \Mrmonsters\Aftership\Model\ResourceModel\Track\CollectionFactory         $asTrackCollectionFactory
+	 * @param \Magento\Framework\App\Config\ConfigResource\ConfigInterface              $configInterface
 	 *
 	 */
 	public function __construct(
