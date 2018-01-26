@@ -34,6 +34,11 @@ class AftershipOptionsConfigChangedObserver implements ObserverInterface {
 	{
 		$postData = $_POST;
 
+		if (empty($postData)) {
+
+			return;
+		}
+
 		if (!isset($postData['groups']['messages']['fields']['api_key']['inherit']) ||
 			$postData['groups']['messages']['fields']['api_key']['inherit'] != 1
 		) {

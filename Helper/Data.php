@@ -10,6 +10,7 @@ namespace Mrmonsters\Aftership\Helper;
 
 use AfterShip\AfterShipException;
 use AfterShip\Trackings;
+use Magento\Directory\Model\CountryFactory;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Sales\Model\Order;
@@ -26,6 +27,7 @@ class Data extends AbstractHelper {
 	protected $_storeManager;
 	protected $_trackFactory;
 	protected $_orderFactory;
+	protected $_countryFactory;
 	protected $_configHelper;
 
 	/**
@@ -35,14 +37,16 @@ class Data extends AbstractHelper {
 		\Magento\Store\Model\StoreManagerInterface $storeManager,
 		TrackFactory $trackFactory,
 		OrderFactory $orderFactory,
+		CountryFactory $countryFactory,
 		Config $configHelper,
 		Context $context
 	)
 	{
-		$this->_storeManager = $storeManager;
-		$this->_trackFactory = $trackFactory;
-		$this->_orderFactory = $orderFactory;
-		$this->_configHelper = $configHelper;
+		$this->_storeManager   = $storeManager;
+		$this->_trackFactory   = $trackFactory;
+		$this->_orderFactory   = $orderFactory;
+		$this->_countryFactory = $countryFactory;
+		$this->_configHelper   = $configHelper;
 
 		parent::__construct($context);
 	}
@@ -127,11 +131,18 @@ class Data extends AbstractHelper {
 		$shippingAddress = $order->getShippingAddress();
 		$apiKey          = $this->_configHelper->getExtensionApiKey($order->getStore()->getWebsiteId());
 		$tracking        = new Trackings($apiKey);
+		$countryIso3     = $this->_countryFactory->create()
+		                                         ->loadByCode($shippingAddress->getCountryId());
 
 		try {
 
+			$this->_eventManager->dispatch('aftership_tracking_upload_before', [
+				'track' => $track
+			]);
+
 			$response = $tracking->create($track->getTrackingNumber(), [
-				'destination_country_iso3' => $shippingAddress->getCountryId(),
+				'slug'                     => $track->getShipCompCode(),
+				'destination_country_iso3' => $countryIso3->getData('iso3_code'),
 				'smses'                    => $shippingAddress->getTelephone(),
 				'emails'                   => $order->getCustomerEmail(),
 				'title'                    => $track->getOrderId(),
@@ -142,6 +153,7 @@ class Data extends AbstractHelper {
 			$track->setPosted(self::POSTED_DONE)->save();
 		} catch (AfterShipException $e) {
 
+		} catch (\Exception $e) {
 
 		}
 	}
