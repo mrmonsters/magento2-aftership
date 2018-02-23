@@ -17,10 +17,11 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class Config extends AbstractHelper {
 
-	const XML_PATH_MESSAGES_API_KEY         = 'aftership_options/messages/api_key';
-	const XML_PATH_MESSAGES_STATUS          = 'aftership_options/messages/status';
-	const XML_PATH_MESSAGES_CRON_JOB_ENABLE = 'aftership_options/messages/cron_job_enable';
-	const XML_PATH_MESSAGES_LAST_UPDATE     = 'aftership_options/messages/last_update';
+	const XML_PATH_MESSAGES_API_KEY                   = 'aftership_options/messages/api_key';
+	const XML_PATH_MESSAGES_STATUS                    = 'aftership_options/messages/status';
+	const XML_PATH_MESSAGES_CRON_JOB_ENABLE           = 'aftership_options/messages/cron_job_enable';
+	const XML_PATH_MESSAGES_LAST_UPDATE               = 'aftership_options/messages/last_update';
+	const XML_PATH_MESSAGES_IMPORT_SHIPMENT_CRON_EXPR = 'aftership_options/messages/import_shipment_cron_expr';
 
 	protected $_configFactory;
 	protected $_storeManager;
@@ -106,4 +107,10 @@ class Config extends AbstractHelper {
 			$config->save();
 		}
 	}
+
+	public function getExtensionImportShipmentCronExpr($storeId = null)
+	{
+		return $this->scopeConfig->getValue(self::XML_PATH_MESSAGES_IMPORT_SHIPMENT_CRON_EXPR, ScopeInterface::SCOPE_STORES, $storeId);
+	}
+	
 }
