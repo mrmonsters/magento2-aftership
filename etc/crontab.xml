@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="index">
         <job name="aftershiptrackcron" instance="Mrmonsters\Aftership\Cron\UploadTracking" method="cron">
-            <schedule>0 */3 * * *</schedule>
+            <config_path>aftership_options/messages/import_shipment_cron_expr</config_path>
         </job>
     </group>
 </config>
