@@ -28,7 +28,7 @@ class InstallSchema implements InstallSchemaInterface {
 		 */
 		$table = $installer->getConnection()
 		                   ->newTable($installer->getTable('as_track'))
-		                   ->addColumn('track_id', \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT, null, [
+		                   ->addColumn('track_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
 			                   'identity' => true,
 			                   'nullable' => false,
 			                   'primary'  => true,
